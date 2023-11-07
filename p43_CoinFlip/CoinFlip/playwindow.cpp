@@ -57,25 +57,6 @@ PlayWindow::PlayWindow(int i, QWidget *parent) :
     }
 
     //添加金币及其背景
-    this->coinBackground();
-
-
-}
-
-void PlayWindow::paintEvent(QPaintEvent *)
-{
-    //创建画家，指定绘图设备
-    QPainter painter(this);
-    //绘制背景图片
-    painter.drawPixmap(0, 0, this->width(), this->height(), QPixmap(":/images/PlayLevelSceneBg.png"));
-
-    QPixmap pix(":/images/Title.png");
-    pix = pix.scaled(pix.width()/2, pix.height()/2);
-    painter.drawPixmap(10, 30, pix.width(), pix.height(), pix);
-}
-
-void PlayWindow::coinBackground()
-{
     for (int i=0; i<4; i++) {
         for (int j=0; j<4; j++) {
             //绘制背景图片
@@ -97,8 +78,62 @@ void PlayWindow::coinBackground()
             MyCoin *coin = new MyCoin(str);
             coin->setParent(this);
             coin->move(59+i*50, 203+j*50);
+            //记录金币的位置
+            coin->posX = i;
+            coin->posY = j;
+            //是否是金币
+            coin->flag = this->gameArray[i][j];
+
+            //将每个金币保存下来
+            this->coinBtn[i][j] = coin;
+
+            //翻转金币
+            connect(coin, &MyCoin::clicked, [=](){
+                //翻转当前金币
+                coin->coin_filp();
+                this->gameArray[i][j] = this->gameArray[i][j]?0:1;
+
+                QTimer::singleShot(150, this, [=](){
+                    //翻转周围金币
+                    if(coin->posX+1<4)
+                    {
+                        this->coinBtn[coin->posX+1][coin->posY]->coin_filp();
+                        this->gameArray[coin->posX+1][coin->posY] = this->gameArray[coin->posX+1][coin->posY]?0:1;
+                    }
+                    if(coin->posX-1>=0)
+                    {
+                        this->coinBtn[coin->posX-1][coin->posY]->coin_filp();
+                        this->gameArray[coin->posX-1][coin->posY] = this->gameArray[coin->posX-1][coin->posY]?0:1;
+                    }
+                    if(coin->posY+1<4)
+                    {
+                        this->coinBtn[coin->posX][coin->posY+1]->coin_filp();
+                        this->gameArray[coin->posX][coin->posY+1] = this->gameArray[coin->posX][coin->posY+1]?0:1;
+                    }
+                    if(coin->posY-1>=0)
+                    {
+                        this->coinBtn[coin->posX][coin->posY-1]->coin_filp();
+                        this->gameArray[coin->posX][coin->posY-1] = this->gameArray[coin->posX][coin->posY-1]?0:1;
+                    }
+                });
+
+            });
         }
     }
+
+
+}
+
+void PlayWindow::paintEvent(QPaintEvent *)
+{
+    //创建画家，指定绘图设备
+    QPainter painter(this);
+    //绘制背景图片
+    painter.drawPixmap(0, 0, this->width(), this->height(), QPixmap(":/images/PlayLevelSceneBg.png"));
+
+    QPixmap pix(":/images/Title.png");
+    pix = pix.scaled(pix.width()/2, pix.height()/2);
+    painter.drawPixmap(10, 30, pix.width(), pix.height(), pix);
 }
 
 PlayWindow::~PlayWindow()

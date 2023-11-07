@@ -23,12 +23,11 @@ public:
     explicit PlayWindow(int i, QWidget *parent = nullptr);
     ~PlayWindow();
 
-    //创建金币及其背景图
-    void coinBackground();
-
     void paintEvent(QPaintEvent *);
 
     int gameArray[4][4];
+
+    MyCoin * coinBtn[4][4];
 
     int level;
 
