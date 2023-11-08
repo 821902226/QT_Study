@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPainter>
 #include <QTimer>
+#include <QSound>
 #include "mypushbutton.h"
 #include "chooselevelwindow.h"
 

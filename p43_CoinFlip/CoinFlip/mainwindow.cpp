@@ -14,6 +14,12 @@ MainWindow::MainWindow(QWidget *parent) :
     //设置窗口标题
     this->setWindowTitle("老帮主带你翻金币");
 
+    //开始按钮音效
+    QSound *startSound = new QSound(":/musics/TapButtonSound.wav");
+    QSound *themeSound = new QSound(":/musics/myDouDZ.wav");
+    themeSound->setLoops(-1);   //无限循环播放
+    themeSound->play();
+
     QMenu *menu_start = ui->menuBar->addMenu("开始");
     QAction *action_exit = menu_start->addAction("退出");
 
@@ -31,6 +37,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(start_btn, &MyPushButton::clicked, [=](){
         //按下动画特效
+        startSound->play();
+
         start_btn->zoomDown();
         start_btn->zoomUp();
 

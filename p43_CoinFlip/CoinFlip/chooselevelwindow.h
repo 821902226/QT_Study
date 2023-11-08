@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <QLabel>
 #include <QDebug>
+#include <QSound>
 #include "playwindow.h"
 
 namespace Ui {

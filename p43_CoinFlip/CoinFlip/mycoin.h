@@ -22,7 +22,8 @@ public:
 
     int posX, posY; //记录金币的位置，第几行第几列
     bool flag;  //判断是正面还是反面
-    bool isAnimation; //判断是否在执行动画
+    bool isAnimation = false; //判断是否在执行动画
+    bool isWin = false; //判断游戏是否胜利
 
     int start, end;
 

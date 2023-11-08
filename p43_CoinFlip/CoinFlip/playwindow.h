@@ -8,8 +8,10 @@
 #include <QDebug>
 #include <QLabel>
 #include <QFont>
+#include <QSound>
 #include "mycoin.h"
 #include "dataconfig.h"
+#include <QPropertyAnimation>
 
 namespace Ui {
 class PlayWindow;

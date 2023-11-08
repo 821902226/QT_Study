@@ -246,8 +246,10 @@ Makefile: ../CoinFlip/CoinFlip.pro D:/Tools/QT5/5.12.1/mingw73_64/mkspecs/win32-
 		D:/Tools/QT5/5.12.1/mingw73_64/mkspecs/features/yacc.prf \
 		D:/Tools/QT5/5.12.1/mingw73_64/mkspecs/features/lex.prf \
 		../CoinFlip/CoinFlip.pro \
+		D:/Tools/QT5/5.12.1/mingw73_64/lib/Qt5Multimedia.prl \
 		D:/Tools/QT5/5.12.1/mingw73_64/lib/Qt5Widgets.prl \
 		D:/Tools/QT5/5.12.1/mingw73_64/lib/Qt5Gui.prl \
+		D:/Tools/QT5/5.12.1/mingw73_64/lib/Qt5Network.prl \
 		D:/Tools/QT5/5.12.1/mingw73_64/lib/Qt5Core.prl \
 		D:/Tools/QT5/5.12.1/mingw73_64/lib/qtmaind.prl
 	$(QMAKE) -o Makefile ..\CoinFlip\CoinFlip.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -434,8 +436,10 @@ D:/Tools/QT5/5.12.1/mingw73_64/mkspecs/features/exceptions.prf:
 D:/Tools/QT5/5.12.1/mingw73_64/mkspecs/features/yacc.prf:
 D:/Tools/QT5/5.12.1/mingw73_64/mkspecs/features/lex.prf:
 ../CoinFlip/CoinFlip.pro:
+D:/Tools/QT5/5.12.1/mingw73_64/lib/Qt5Multimedia.prl:
 D:/Tools/QT5/5.12.1/mingw73_64/lib/Qt5Widgets.prl:
 D:/Tools/QT5/5.12.1/mingw73_64/lib/Qt5Gui.prl:
+D:/Tools/QT5/5.12.1/mingw73_64/lib/Qt5Network.prl:
 D:/Tools/QT5/5.12.1/mingw73_64/lib/Qt5Core.prl:
 D:/Tools/QT5/5.12.1/mingw73_64/lib/qtmaind.prl:
 qmake: FORCE

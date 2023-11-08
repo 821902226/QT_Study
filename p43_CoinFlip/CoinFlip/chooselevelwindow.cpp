@@ -14,6 +14,11 @@ ChooseLevelWindow::ChooseLevelWindow(QWidget *parent) :
     //设置窗口标题
     this->setWindowTitle("选择关卡");
 
+    //选择关卡音效
+    QSound *chooseSound = new QSound(":/musics/TapButtonSound.wav");
+    //返回按钮音效
+    QSound *backSound = new QSound(":/musics/BackButtonSound.wav");
+
     connect(ui->actionexit2, &QAction::triggered, [=](){
         this->close();
     });
@@ -25,6 +30,7 @@ ChooseLevelWindow::ChooseLevelWindow(QWidget *parent) :
 
     //点击返回
     connect(back_btn, &MyPushButton::clicked, [=](){
+        backSound->play();
         //发送back按下信号
         QTimer::singleShot(200, this, [=](){
             emit this->chooseBack();
@@ -53,6 +59,7 @@ ChooseLevelWindow::ChooseLevelWindow(QWidget *parent) :
 
         //监听每个按钮的点击情况
         connect(menuBtn, &MyPushButton::clicked, [=](){
+            chooseSound->play();
             //进入到游戏场景
             this->hide();
             this->play = new PlayWindow(i+1);
