@@ -59,14 +59,20 @@ ChooseLevelWindow::ChooseLevelWindow(QWidget *parent) :
 
         //监听每个按钮的点击情况
         connect(menuBtn, &MyPushButton::clicked, [=](){
+            //游戏音效
             chooseSound->play();
             //进入到游戏场景
             this->hide();
             this->play = new PlayWindow(i+1);
+            //窗口保持一致
+            this->play->setGeometry(this->geometry());
             this->play->show();
 
             //从游戏界面返回
             connect(this->play, &PlayWindow::playBack, [=](){
+                //窗口保持一致
+                this->setGeometry(this->play->geometry());
+
                 delete this->play;
                 this->play = NULL;
                 this->show();

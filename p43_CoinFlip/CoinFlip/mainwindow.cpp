@@ -36,14 +36,16 @@ MainWindow::MainWindow(QWidget *parent) :
     this->chooseLevelWindow = new ChooseLevelWindow;
 
     connect(start_btn, &MyPushButton::clicked, [=](){
-        //按下动画特效
+        //按下音效
         startSound->play();
-
+        //按下动画特效
         start_btn->zoomDown();
         start_btn->zoomUp();
 
         //延时400ms，保证动画显示完整
         QTimer::singleShot(400, this, [=](){
+            //下一窗口位置与当前窗口保持一致
+            this->chooseLevelWindow->setGeometry(this->geometry());
             //隐藏当前窗口
             this->hide();
             //显示选择关卡窗口
@@ -53,6 +55,8 @@ MainWindow::MainWindow(QWidget *parent) :
     });
 
     connect(this->chooseLevelWindow, &ChooseLevelWindow::chooseBack, [=](){
+        //返回的时候窗口位置保持一致
+        this->setGeometry(this->chooseLevelWindow->geometry());
         this->chooseLevelWindow->hide();
         this->show();
     });
